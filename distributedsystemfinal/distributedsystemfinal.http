@@ -1,0 +1,6 @@
+@distributedsystemfinal_HostAddress = http://localhost:5039
+
+GET {{distributedsystemfinal_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
