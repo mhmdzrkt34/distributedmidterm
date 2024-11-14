@@ -32,3 +32,11 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+- script: |
+    docker build -t your_dockerhub_username/sampledotnetapi:$(Build.BuildId) .
+  displayName: 'Build Docker Image'
+
+- script: |
+    docker login -u $(dockerHubUsername) -p $(dockerHubPassword)
+    docker push your_dockerhub_username/sampledotnetapi:$(Build.BuildId)
+  displayName: 'Push Docker Image to Docker Hub'
