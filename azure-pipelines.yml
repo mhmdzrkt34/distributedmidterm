@@ -38,5 +38,12 @@ steps:
 
 - script: |
     docker login -u $(dockerHubUsername) -p $(dockerHubPassword)
-    docker push your_dockerhub_username/sampledotnetapi:$(Build.BuildId)
-  displayName: 'Push Docker Image to Docker Hub'
+    docker push mhmdzrkt34/sampledotnetapi:$(Build.BuildId)
+  displayName: 'Push Docker Image to Docker Hub'  
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: '<AzureSubscriptionConnection>'
+    appName: 'my-dotnet-webapi-app'                        # Replace with your App Service name
+    containerRegistry: 'Docker Hub'                         # Public Docker Hub registry
+    repository: 'mhmdzrkt34/sampledotnetapi'                # Replace with your Docker Hub repo name
+    tag: '$(Build.BuildId)'                                 # Use the same tag as in the Docker build
