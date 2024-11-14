@@ -33,7 +33,7 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 - script: |
-    docker build -t your_dockerhub_username/sampledotnetapi:$(Build.BuildId) .
+    docker build -t mhmdzrkt34/sampledotnetapi:$(Build.BuildId) .
   displayName: 'Build Docker Image'
 
 - script: |
